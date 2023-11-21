@@ -1,0 +1,168 @@
+@import url(./cssbuttons.scss);
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+body,
+html,
+*,
+*::before,
+*::after,
+:host,
+:root {
+    word-wrap: break-word;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+#root {
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+}
+
+.font-title {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.lucide {
+    width: 16px;
+    height: 16px;
+}
+
+@layer utilities {
+    .all-center {
+        @apply justify-center items-center;
+    }
+
+    .cs-b-round {
+        @apply w-10 h-10 rounded-full hover:bg-[#0001] focus-within:bg-[#0001] text-xl transition-all inline-flex all-center;
+    }
+
+    .cs-b-round-true {
+        @apply bg-[#0001];
+    }
+}
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #397524 #FFFFFF;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: #72788877;
+}
+
+
+
+.flex-parent {
+    &:has(>.flex-child) {
+        display: flex;
+    }
+
+    &:has(>.flex-child-col) {
+        flex-direction: column;
+    }
+}
+
+
+
+.editor {
+    counter-reset: line;
+    flex: 1;
+    min-height: 300px;
+
+    @apply border border-gray-300 dark:border-secondary bg-[#ffffff02] rounded-lg bg-white dark:bg-[#ffffff03];
+
+    &:has(#codeArea:focus) {
+        border-color: #52a2e499;
+        @apply shadow-xl;
+    }
+
+    #codeArea {
+        outline: none;
+        padding-left: 80px !important;
+    }
+
+    pre {
+        padding-left: 80px !important;
+
+        span.token {
+            background-color: transparent;
+        }
+    }
+
+    .editorLineNumber {
+        position: absolute;
+        left: 0px;
+        text-align: right;
+        padding-right: 10px;
+        width: 60px;
+        font-weight: 100;
+
+        @apply text-gray-400 dark:text-gray-700;
+    }
+
+    .editorLineNumber:nth-child(even) {
+        @apply bg-gray-200 dark:bg-secondary;
+    }
+
+}
