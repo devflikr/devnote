@@ -22,13 +22,21 @@ function TableBody<T>({ data, columns, accessor: rowAccessor, pathKey }: TableBo
                             const itemPath = path ? path.replace(`:${pathKey}`, pathKeyVal) : "";
                             const itemData = item[mainAccessor] ? item[mainAccessor] as string : "—";
                             if (itemPath) return <Link to={itemPath} className={twcls(
-                                "table-cell line-clamp-1 whitespace-nowrap px-5 py-2",
+                                "table-cell relative h-12",
                                 className,
-                            )} key={mainAccessor as string}>{render?.(item) || itemData}</Link>;
+                            )} key={mainAccessor as string}>
+                                <span className="absolute px-5 py-2 top-1/2 left-0 right-0 -translate-y-1/2 line-clamp-1 whitespace-nowrap max-w-xs">
+                                    {render?.(item) || itemData}
+                                </span>
+                            </Link>;
                             return <span className={twcls(
-                                "table-cell line-clamp-1 whitespace-nowrap px-5 py-2",
+                                "table-cell relative h-12",
                                 className,
-                            )} key={mainAccessor as string}>{render?.(item) || itemData}</span>;
+                            )} key={mainAccessor as string}>
+                                <span className="absolute px-5 py-2 top-1/2 left-0 right-0 -translate-y-1/2 line-clamp-1 whitespace-nowrap max-w-xs">
+                                    {render?.(item) || itemData}
+                                </span>
+                            </span>;
                         })}
                     </span>
                 );

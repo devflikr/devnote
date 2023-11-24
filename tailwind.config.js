@@ -1,9 +1,11 @@
+import withMT from "@material-tailwind/react/utils/withMT";
 /** @type {import('tailwindcss').Config} */
-export default {
+export default withMT({
   darkMode: "class",
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-select/dist/index.esm.js",
   ],
   safelist: [
     "sm:absolute",
@@ -23,5 +25,5 @@ export default {
   },
   // eslint-disable-next-line no-undef
   plugins: [require('@tailwindcss/container-queries')],
-}
+});
 

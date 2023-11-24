@@ -22,8 +22,8 @@ function PageDashboard() {
             <div className="flex-child flex-1 flex-child-col p-3 md:p-5 w-full overflow-x-auto">
                 <Table<NoteListType> loading={loading} data={notelist} accessor="id" pathKey="key" columns={[
                     { label: "Title", accessor: "title", path: "./note/:key", sortable: true, defaultSortField: true, defaultSortAsc: true, className: "w-3/5" },
-                    { label: "Last modified", accessor: "modifiedAt", display: "modifiedContent", path: "./note/:key", sortable: true, className: "w-1/4 hidden sm:table-cell" },
-                    { label: "Date created", accessor: "createdAt", display: "createdContent", path: "./note/:key", sortable: true, className: "w-1/4 hidden lg:table-cell" },
+                    { label: "Last modified", accessor: "modifiedAt", display: "modifiedContent", path: "./note/:key", sortable: true, className: "hidden sm:table-cell" },
+                    { label: "Date created", accessor: "createdAt", display: "createdContent", path: "./note/:key", sortable: true, className: "hidden lg:table-cell" },
                     {
                         label: "", accessor: "append", render: (item) => {
                             return (
@@ -37,7 +37,9 @@ function PageDashboard() {
                                             });
                                         }}><Star fill={item.starred ? "currentColor" : "none"} /></button>
                                     </Tippy>
-                                    <button className="cs-b-round border border-[#7771] !w-8 !h-8"><Share /></button>
+                                    <Tippy content="Share">
+                                        <Link to={`./share/${item.key}`} className="cs-b-round border border-[#7771] !w-8 !h-8"><Share /></Link>
+                                    </Tippy>
                                     <Tippy content={"Move to trash"}>
                                         <button className="cs-b-round border border-[#7771] !w-8 !h-8" onClick={() => {
                                             const tid = toast.loading("Moving to trash");
@@ -49,7 +51,7 @@ function PageDashboard() {
                                     </Tippy>
                                 </span>
                             );
-                        }, className: "w-0 hidden xs:table-cell"
+                        }, className: "min-w-[120px] hidden xs:table-cell"
                     },
                 ]} />
             </div>

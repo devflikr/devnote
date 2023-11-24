@@ -1,4 +1,6 @@
 @import url(./cssbuttons.scss);
+@import url(./coder.scss);
+@import url(./line-numbers.scss);
 
 html {
     scroll-behavior: smooth;
@@ -82,7 +84,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     .cs-b-round {
-        @apply w-10 h-10 rounded-full hover:bg-[#0001] focus-within:bg-[#0001] text-xl transition-all inline-flex all-center;
+        @apply w-10 h-10 rounded-full hover:bg-[#0001] dark:hover:bg-[#fff1] focus-within:bg-[#0001] dark:focus-within:bg-[#fff1] text-xl transition-all inline-flex all-center;
     }
 
     .cs-b-round-true {
@@ -125,44 +127,3 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-.editor {
-    counter-reset: line;
-    flex: 1;
-    min-height: 300px;
-
-    @apply border border-gray-300 dark:border-secondary bg-[#ffffff02] rounded-lg bg-white dark:bg-[#ffffff03];
-
-    &:has(#codeArea:focus) {
-        border-color: #52a2e499;
-        @apply shadow-xl;
-    }
-
-    #codeArea {
-        outline: none;
-        padding-left: 80px !important;
-    }
-
-    pre {
-        padding-left: 80px !important;
-
-        span.token {
-            background-color: transparent;
-        }
-    }
-
-    .editorLineNumber {
-        position: absolute;
-        left: 0px;
-        text-align: right;
-        padding-right: 10px;
-        width: 60px;
-        font-weight: 100;
-
-        @apply text-gray-400 dark:text-gray-700;
-    }
-
-    .editorLineNumber:nth-child(even) {
-        @apply bg-gray-200 dark:bg-secondary;
-    }
-
-}

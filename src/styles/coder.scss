@@ -1,0 +1,65 @@
+.editor {
+    counter-reset: line;
+    flex: 1;
+    min-height: 300px;
+
+    @apply border border-gray-300 dark:border-secondary rounded-lg bg-white dark:bg-[#ffffff03];
+
+    &:has(#codeArea:focus) {
+        border-color: #52a2e499;
+        @apply shadow-xl;
+    }
+
+    #codeArea {
+        outline: none;
+        padding-left: 65px !important;
+    }
+
+    pre {
+        padding-left: 65px !important;
+
+        span.token {
+            background-color: transparent;
+        }
+
+        span.editorLineNumber {
+            position: absolute;
+            left: 0px;
+            text-align: right;
+            padding-right: 5px;
+            width: 60px;
+            font-weight: 100;
+
+            @apply text-gray-400 dark:text-gray-700;
+        }
+
+        // span.editorLineNumber:nth-child(even) {
+        //     @apply bg-gray-200 dark:bg-secondary;
+        // }
+    }
+
+
+}
+
+.viewer-card {
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding-block: 20px;
+    white-space: pre-wrap;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    text-shadow: none;
+    @apply dark:text-inherit;
+}
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+    @apply bg-white dark:bg-[#efefff09] rounded-lg shadow;
+
+    span.token {
+        background-color: transparent !important;
+    }
+}

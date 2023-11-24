@@ -24,7 +24,7 @@ function SidePanel() {
                         <span className="font-title text-2xl leading-3">DevNote</span>
                     </Link>
                 </header>
-                <section className="flex-1 overflow-auto px-3 py-10 flex flex-col">
+                <section className="flex-1 overflow-auto px-3 my-8 flex flex-col">
                     <SideItem icon={Plus} text="New note" to="./new" />
                     <SideItem icon={LayoutGrid} text="Dashboard" to="/dashboard" />
                     <SideItem icon={Share2} text="Shared with me" to="./shared" />

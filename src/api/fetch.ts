@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { ApiRejection, ApiResponse } from ".";
+import { ApiError, ApiRejection, ApiResponse } from ".";
 import toast from "react-hot-toast";
 
 export default function fetch<T>(url: string, config: AxiosRequestConfig = {}, data?: unknown, toastID?: string): Promise<ApiResponse<T>> {
@@ -22,7 +22,7 @@ export default function fetch<T>(url: string, config: AxiosRequestConfig = {}, d
                     if (error.response.data.message) {
                         message = error.response.data.message;
                         if (error.response.data.data) {
-                            message += `: ${String(data)}`;
+                            message += `: ${JSON.stringify(error.response.data.data)}`;
                         }
                     } else {
                         message = String(error.response.data);
@@ -38,7 +38,22 @@ export default function fetch<T>(url: string, config: AxiosRequestConfig = {}, d
             message = messageElement.innerText;
             message = message.replace(/\n/g, " ");
             toast.error(message, { id: toastID });
-            reject(error);
+            reject(parseError(error, message));
         });
     });
+}
+
+function parseError(error: AxiosError<ApiRejection>, message: string): ApiError {
+    const errorData = error.response?.data;
+    const type = (errorData?.type || "").split("/");
+    return {
+        error: true,
+        type: errorData?.type || "",
+        status: "error",
+        message,
+        data: errorData?.data,
+        service: type[0],
+        target: type[1],
+        content: type[2],
+    }
 }

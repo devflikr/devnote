@@ -16,7 +16,7 @@ function DashHeaderSearch() {
     }, 300, [value]);
     return (
         <>
-            <form className="hidden flex-nowrap bg-gray-200 dark:bg-secondary pl-4 rounded-lg items-center max-w-[440px] w-1/2 text-gray-500 sm:inline-flex">
+            <form className="hidden flex-nowrap bg-gray-200 dark:bg-secondary pl-4 rounded-lg items-center max-w-[440px] w-1/2 text-gray-500 sm:inline-flex" onSubmit={(e) => e.preventDefault()}>
                 <Search size={16} />
                 <input className="bg-transparent px-3 h-10 self-stretch outline-none flex-1" placeholder="Search your notes..." type="search" name="q" id="search" defaultValue={decodeURIComponent(searchParams.get("q") || "")} onChange={(e) => setValue(e.target.value.trim())} />
             </form>

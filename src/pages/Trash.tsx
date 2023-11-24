@@ -22,8 +22,8 @@ function PageTrash() {
             <div className="flex-child flex-1 flex-child-col p-3 md:p-5 w-full overflow-x-auto">
                 <Table<TrashListType> loading={loading} data={trashlist} accessor="id" pathKey="key" columns={[
                     { label: "Title", accessor: "title", sortable: true, defaultSortField: true, defaultSortAsc: true, className: "w-3/5" },
-                    { label: "Date trashed", accessor: "deletedAt", display: "deletedContent", sortable: true, className: "w-1/4 hidden sm:table-cell" },
-                    { label: "Time left", accessor: "timeLeft", display: "timeLeftContent", sortable: true, className: "w-1/4 hidden lg:table-cell" },
+                    { label: "Date trashed", accessor: "deletedAt", display: "deletedContent", sortable: true, className: "hidden sm:table-cell" },
+                    { label: "Time left", accessor: "timeLeft", display: "timeLeftContent", sortable: true, className: "hidden lg:table-cell" },
                     {
                         label: "", accessor: "append", render: (item) => {
                             return (
@@ -48,7 +48,7 @@ function PageTrash() {
                                     </Tippy>
                                 </span>
                             );
-                        }, className: "w-0 hidden xs:table-cell"
+                        }, className: "min-w-[76px] hidden xs:table-cell"
                     },
                 ]} />
             </div>
