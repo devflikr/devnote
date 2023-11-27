@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 
 function copyShareKey(key: string) {
-    const text = `http://devnote.devflikr.com/s/${key}`;
+    const text = `https://devnote.devflikr.com/s/${key}`;
     clipboard.write(text).then(() => {
         toast.success("Share link copied to clipboard");
     }).catch((e) => {
