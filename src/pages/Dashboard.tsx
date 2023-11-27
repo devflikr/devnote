@@ -5,15 +5,15 @@ import EmptyContent from '../framer/EmptyContent';
 import useNoteList from '../hooks/useNoteList';
 import Table from '../components/Table';
 import NoteListType from '../types/NoteList';
-import { Share, Star, Trash2 } from 'lucide-react';
-import Tippy from '@tippyjs/react';
-import toast from 'react-hot-toast';
-import ApiQuery from '../api/query';
 import useAppContext from '../context/useAppContext';
+import Append from '../components/Append';
+import { useDocumentTitle } from 'react-unique-hooks';
 
 function PageDashboard() {
     const [notelist, loading, , refetch] = useNoteList();
     const { user } = useAppContext();
+
+    useDocumentTitle("Dashboard");
 
     if (!user) return null;
 
@@ -26,31 +26,7 @@ function PageDashboard() {
                     { label: "Date created", accessor: "createdAt", display: "createdContent", path: "./note/:key", sortable: true, className: "hidden lg:table-cell" },
                     {
                         label: "", accessor: "append", render: (item) => {
-                            return (
-                                <span className="space-x-3 invisible group-hover:visible">
-                                    <Tippy content={item.starred ? "Remove from starred" : "Add to starred"}>
-                                        <button className="cs-b-round border border-[#7771] !w-8 !h-8" onClick={() => {
-                                            const tid = toast.loading(item.starred ? "Removing from starred" : "Adding to starred");
-                                            ApiQuery[item.starred ? "removeFromStarred" : "addToStarred"](user, [item.key], tid).then(() => {
-                                                toast.success(item.starred ? "1 note removed from starred" : "1 note added to starred", { id: tid });
-                                                refetch();
-                                            });
-                                        }}><Star fill={item.starred ? "currentColor" : "none"} /></button>
-                                    </Tippy>
-                                    <Tippy content="Share">
-                                        <Link to={`./share/${item.key}`} className="cs-b-round border border-[#7771] !w-8 !h-8"><Share /></Link>
-                                    </Tippy>
-                                    <Tippy content={"Move to trash"}>
-                                        <button className="cs-b-round border border-[#7771] !w-8 !h-8" onClick={() => {
-                                            const tid = toast.loading("Moving to trash");
-                                            ApiQuery.moveToTrash(user, [item.key], tid).then(() => {
-                                                toast.success("1 note moved to trash", { id: tid });
-                                                refetch();
-                                            });
-                                        }}><Trash2 /></button>
-                                    </Tippy>
-                                </span>
-                            );
+                            return <Append note={item} refetch={refetch} />;
                         }, className: "min-w-[120px] hidden xs:table-cell"
                     },
                 ]} />

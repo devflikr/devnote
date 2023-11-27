@@ -13,7 +13,7 @@ function TableHead<T>({ columns, sortField, sortOrder, setSortField, setSortOrde
 
     return (
         <div className="table-header-group">
-            <span className="table-row border-b border-b-gray-200 dark:border-b-gray-800 sticky top-0">
+            <span className="table-row border-b border-b-gray-200 dark:border-b-primary sticky top-0">
                 {columns.map(({ label, accessor, sortable, defaultSortField, defaultSortAsc, className }) => {
                     if (sortable && !sortField && defaultSortField) {
                         setTimeout(() => {

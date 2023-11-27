@@ -16,7 +16,7 @@ function useSaveNote(defaultTitle: string = "", defaultValue: string = "", defau
         try {
             const res = await ApiEndpoint.fetch<string>(ApiEndpoint.routes.savenote, {}, {
                 uid: user.uid,
-                title: generateNoteTitle(title),
+                title: generateNoteTitle(title.trim() ? title : value),
                 content: value,
                 language: language,
             });

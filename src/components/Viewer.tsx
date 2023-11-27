@@ -11,7 +11,7 @@ function Viewer({ content, language = "plaintext" }: ViewerProps) {
     }, [language]);
 
     return (
-        <pre className="viewer-card line-numbers" style={{
+        <pre className="viewer-card line-numbers flex-1" style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 16,
             outline: 0

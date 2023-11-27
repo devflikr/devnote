@@ -7,6 +7,8 @@ import PageNew from "../../pages/New";
 import PageTrash from "../../pages/Trash";
 import PageStarred from "../../pages/Starred";
 import PageNote from "../../pages/Note";
+import PageShared from "../../pages/Shared";
+import SharedContent from "../../components/SharedContent";
 
 function Dashboard() {
 
@@ -19,6 +21,8 @@ function Dashboard() {
                     <section className="absolute inset-0 overflow-auto">
                         <section className="min-h-[calc(100dvh_-_100px)] flex-parent relative">
                             <Routes>
+                                <Route path="/shared/:shareKey" element={<SharedContent />} />
+                                <Route path="/shared" element={<PageShared />} />
                                 <Route path="/note/:note_id" element={<PageNote />} />
                                 <Route path="/note" element={<Navigate to="/dashboard" replace />} />
                                 <Route path="/starred" element={<PageStarred />} />

@@ -7,6 +7,7 @@ import notAvailableAnimation from '../../assets/lottie/not-available.json';
 import accessDeniedAnimation from '../../assets/lottie/access-denied.json';
 import unknownErrorAnimation from '../../assets/lottie/unknown-error.json';
 import pageNotFoundAnimation from '../../assets/lottie/404.json';
+import LoginFirstAnimation from '../../assets/lottie/login.json';
 
 const emptyAnimations = {
     dashboard: {
@@ -33,12 +34,24 @@ const emptyAnimations = {
         content: "This note has been deleted. Recover it from trash.",
         animation: emptyTrashAnimation,
     },
+    deleted2: {
+        content: "This note has been deleted. Ask the sender to recover it from trash.",
+        animation: emptyTrashAnimation,
+    },
     hidden: {
         content: "This note does not exists. Or maybe you have deleted it permanently.",
         animation: notAvailableAnimation,
     },
+    hidden2: {
+        content: "This note does not exists. The share key is invalid.",
+        animation: notAvailableAnimation,
+    },
     denied: {
         content: "You don't have access to this note. Try switching account.",
+        animation: accessDeniedAnimation,
+    },
+    denied2: {
+        content: "You don't have access to this note.",
         animation: accessDeniedAnimation,
     },
     unknown: {
@@ -48,6 +61,10 @@ const emptyAnimations = {
     page404: {
         content: "Looks like you have entered an unknown area. This page doesn't exist.",
         animation: pageNotFoundAnimation,
+    },
+    login: {
+        content: "This page requires user authentication. Login to access this page content.",
+        animation: LoginFirstAnimation,
     },
 
 } as const;

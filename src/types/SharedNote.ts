@@ -1,7 +1,6 @@
-interface NoteTrueContentType {
+interface SharedNoteType {
     id: string;
     key: string;
-    uid: string;
 
     title: string;
     content: string;
@@ -10,12 +9,7 @@ interface NoteTrueContentType {
     createdAt: Date;
     createdContent: string;
 
-    modifiedAt: Date;
-    modifiedContent: string;
-
-    starred: boolean;
-
     shareKey: string;
 }
 
-export default NoteTrueContentType;
+export default SharedNoteType;

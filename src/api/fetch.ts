@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export default function fetch<T>(url: string, config: AxiosRequestConfig = {}, data?: unknown, toastID?: string): Promise<ApiResponse<T>> {
     return new Promise((resolve, reject) => {
         axios<ApiResponse<T>>({
-            baseURL: "http://localhost:8988/devnote",
+            baseURL: "https://api.devnote.com/devnote",
             method: "POST",
             responseType: "json",
             url,

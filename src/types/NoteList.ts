@@ -15,7 +15,9 @@ interface NoteListType {
 
     append?: React.ReactNode;
 
-    starred?: boolean;
+    starred: boolean;
+
+    shareKey: string;
 
 }
 

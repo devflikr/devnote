@@ -2,7 +2,7 @@ import useNoteTrueContent from '../../hooks/useNoteTrueContent';
 import LoadingSpin from '../../components/LoadingSpin';
 import EmptyContent from '../../framer/EmptyContent';
 import Viewer from '../../components/Viewer';
-import { Cog, Edit, Share, Star, Trash2 } from 'lucide-react';
+import { Cog, Copy, Edit, Share, Star, Trash2 } from 'lucide-react';
 import Tippy from '@tippyjs/react';
 import ApiQuery from '../../api/query';
 import useAppContext from '../../context/useAppContext';
@@ -10,7 +10,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import EditNoteProperties from './Properties';
-import NoteShare from '../../components/Share';
+import copyShareKey from '../../util/copyShareKey';
+import copyNoteContent from '../../util/copyNoteContent';
+import TextArea from '../../components/TextArea';
+import SaveButton from '../../components/SaveButton';
+import useUpdateNote from '../../hooks/useUpdateNote';
+import { useDocumentTitle } from 'react-unique-hooks';
 
 function PageNote() {
     const [note, loading, error, refetch] = useNoteTrueContent();
@@ -20,7 +25,10 @@ function PageNote() {
     const navigate = useNavigate();
 
     const [titleOpen, setTitleOpen] = useState(false);
-    const [shareOpen, setShareOpen] = useState(false);
+
+    const { value, editMode, setEditMode, setValue, loading: editLoad, submit } = useUpdateNote(note);
+
+    useDocumentTitle(loading? "Loading" : [note?.title || "", "Notes"])
 
     if (!user || loading) return <LoadingSpin />;
 
@@ -40,7 +48,7 @@ function PageNote() {
 
     return (
 
-        <div className="p-5">
+        <div className="p-5 flex-1 flex-child flex-child-col flex flex-col">
             <header className="flex w-full gap-5 all-center flex-wrap mb-5">
                 <span className="inline-flex flex-1 mr-auto items-center gap-3 flex-nowrap">
                     <h1 className="text-lg font-bold line-clamp-2 break-words w-full">{note.title || "Untitled"}</h1>
@@ -52,8 +60,13 @@ function PageNote() {
                         </button>
                     </Tippy>
                     <Tippy content="Edit note">
-                        <button className="cs-b-round">
+                        <button className="cs-b-round" onClick={() => setEditMode(!editMode)}>
                             <Edit />
+                        </button>
+                    </Tippy>
+                    <Tippy content="Copy note content">
+                        <button className="cs-b-round" onClick={() => copyNoteContent(note.content)}>
+                            <Copy />
                         </button>
                     </Tippy>
                     <Tippy content={note.starred ? "Remove from starred" : "Add to starred"}>
@@ -67,8 +80,8 @@ function PageNote() {
                             <Star fill={note.starred ? "currentColor" : "none"} />
                         </button>
                     </Tippy>
-                    <Tippy content="Share">
-                        <button className="cs-b-round" onClick={() => setShareOpen(true)}>
+                    <Tippy content="Copy share link">
+                        <button className="cs-b-round" onClick={() => copyShareKey(note.shareKey)}>
                             <Share />
                         </button>
                     </Tippy>
@@ -85,8 +98,13 @@ function PageNote() {
                     </Tippy>
                 </span>
             </header>
-            <Viewer content={note.content} language={note.language} />
-            <NoteShare open={shareOpen} setOpen={setShareOpen} note={note} />
+            {editMode && <header className="flex w-full gap-5 all-center flex-wrap mb-5">
+                <span className="inline-flex flex-1 mr-auto items-center gap-3 flex-nowrap">
+                    <h1 className="w-full text-[#727888]">Editing</h1>
+                </span>
+                <SaveButton loading={editLoad} disabled={!value.trim() || editLoad} children="Update" onClick={submit} />
+            </header>}
+            {editMode ? <TextArea placeholder="Edit note..." onChange={(val) => setValue(val)} defaultValue={note.content} language={note.language} /> : <Viewer content={note.content} language={note.language} />}
             <EditNoteProperties open={titleOpen} setOpen={setTitleOpen} note={note} refetch={refetch} />
         </div>
     )

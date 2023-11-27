@@ -10,10 +10,13 @@ import ApiQuery from '../api/query';
 import useAppContext from '../context/useAppContext';
 import TrashListType from '../types/TrashList';
 import useTrashList from '../hooks/useTrashList';
+import { useDocumentTitle } from 'react-unique-hooks';
 
 function PageTrash() {
     const [trashlist, loading, , refetch] = useTrashList();
     const { user } = useAppContext();
+
+    useDocumentTitle("Trash");
 
     if (!user) return null;
 

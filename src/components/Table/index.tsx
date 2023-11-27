@@ -37,7 +37,6 @@ function Table<T>({ data, columns, accessor, pathKey, loading }: TableProps<T>) 
         item[pathKey] = uuid();
         return item as T;
     });
-    console.log(loadingArray);
 
     return (
         <div className="bg-white shadow overflow-hidden dark:bg-secondary min-w-full border-collapse table-fixed rounded-lg table relative">

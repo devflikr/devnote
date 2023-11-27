@@ -1,9 +1,10 @@
-import { LayoutGrid, Menu, Music, Plus, Share2, Star, Trash2, X } from 'lucide-react';
+import { LayoutGrid, Menu, Plus, Share2, Star, Trash2, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useSidePanel from './useSidePanel';
 import twcls from '../../../util/twcls';
 import SideTheme from './Theme';
 import SideItem from './Item';
+import AppIcon from "../../../assets/favicon.svg?react";
 
 function SidePanel() {
 
@@ -18,8 +19,8 @@ function SidePanel() {
                 <header className="px-3 flex flex-nowrap gap-3">
                     <SidePanelToggler />
                     <Link to="/dashboard" className="inline-flex flex-nowrap gap-5 items-center">
-                        <span className="bg-blue-400 p-2 rounded-xl">
-                            <Music />
+                        <span className="w-10 h-10">
+                            <AppIcon />
                         </span>
                         <span className="font-title text-2xl leading-3">DevNote</span>
                     </Link>

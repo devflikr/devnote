@@ -61,16 +61,6 @@ export interface ApiQueryShareNoteContent {
     shareId?: string;
 }
 
-export async function ApiQueryShareNoteContent(user: User, note: NoteTrueContentType, updates: ApiQueryShareNoteContent, toast?: string) {
-    return ApiEndpoint.fetch(ApiEndpoint.routes.sharenote, {}, {
-        uid: user.uid,
-        key: note.key,
-        encryptionKey: updates.encryptionKey,
-        expiresAt: updates.expiresAt,
-        shareId: updates.shareId,
-    }, toast);
-}
-
 
 const ApiQuery = {
     addToStarred: ApiQueryAddToStarred,
@@ -79,7 +69,6 @@ const ApiQuery = {
     restoreFromTrash: ApiQueryRestoreFromTrash,
     trashForever: ApiQueryTrashForever,
     updateNote: ApiQueryUpdateNoteContent,
-    shareNote: ApiQueryShareNoteContent,
 };
 
 export default ApiQuery;

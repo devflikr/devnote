@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { tippy } from '@tippyjs/react';
-import 'flikrui/dist/styles.css';
+
+import App from './App.tsx';
+
+import 'flikrui/dist/class-styled.css';
+
 import './styles/index.scss';
+
+import { tippy } from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
 
@@ -13,8 +17,6 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { tailspin, ring } from 'ldrs';
 import { Toaster } from 'react-hot-toast';
 
-// import 'prismjs/components/prism-plaintext';
-// import 'prismjs/components/prism-html';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';

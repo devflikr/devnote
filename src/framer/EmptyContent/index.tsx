@@ -8,7 +8,7 @@ export interface EmptyContentProps {
 function EmptyContent({ set }: EmptyContentProps) {
     const data = set(emptyAnimations);
     return (
-        <div className="flex-child flex-child-col flex-1 flex py-10 flex-col gap-10 justify-center">
+        <div className="flex-child flex-child-col flex-1 flex py-10 flex-col gap-10 justify-center px-3">
             <Player
                 src={data.animation}
                 style={{
