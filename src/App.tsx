@@ -21,6 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/*" element={<PageNotFound />} />
                     <Route path="/s/:shareKey" element={<Shared />} />
+                    <Route path="/s" element={<Navigate to="/" />} />
                     <Route path="/dashboard/*" element={<AuthVerified element={<Dashboard />} />} />
                     <Route path="/" element={<AuthRedirect element={<PageHome />} />} />
                 </Routes>

@@ -28,7 +28,7 @@ function PageNote() {
 
     const { value, editMode, setEditMode, setValue, loading: editLoad, submit } = useUpdateNote(note);
 
-    useDocumentTitle(loading? "Loading" : [note?.title || "", "Notes"])
+    useDocumentTitle(loading ? "Loading" : [note?.title || "", "Notes"])
 
     if (!user || loading) return <LoadingSpin />;
 
@@ -102,9 +102,9 @@ function PageNote() {
                 <span className="inline-flex flex-1 mr-auto items-center gap-3 flex-nowrap">
                     <h1 className="w-full text-[#727888]">Editing</h1>
                 </span>
-                <SaveButton loading={editLoad} disabled={!value.trim() || editLoad} children="Update" onClick={submit} />
+                <SaveButton loading={editLoad} disabled={!value.trim() || editLoad} children="Update" onClick={() => submit().then(refetch)} />
             </header>}
-            {editMode ? <TextArea placeholder="Edit note..." onChange={(val) => setValue(val)} defaultValue={note.content} language={note.language} /> : <Viewer content={note.content} language={note.language} />}
+            {editMode ? <TextArea key={new Date(note.modifiedAt).toISOString()} placeholder="Edit note..." onChange={(val) => setValue(val)} defaultValue={note.content} language={note.language} /> : <Viewer key={new Date(note.modifiedAt).toISOString()} content={note.content} language={note.language} />}
             <EditNoteProperties open={titleOpen} setOpen={setTitleOpen} note={note} refetch={refetch} />
         </div>
     )

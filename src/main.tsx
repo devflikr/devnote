@@ -26,12 +26,12 @@ import "prismjs/plugins/line-numbers/prism-line-numbers";
 tailspin.register();
 ring.register();
 
-
 tippy.setDefaultProps({
     arrow: false,
     animation: "shift-away",
     delay: [200, 0],
     theme: 'tippy-theme',
+    touch: "hold",
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

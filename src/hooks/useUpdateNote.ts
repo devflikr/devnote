@@ -19,7 +19,7 @@ function useUpdateNote(note: NoteTrueContentType | null) {
             content: value,
         }, tid).then(() => {
             setEditMode(false);
-            toast.success("Note content updated", { id: tid });
+            toast.success("Note content updated, fetching new content", { id: tid });
         }).finally(() => {
             setLoading(false);
         });
